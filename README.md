@@ -1,6 +1,6 @@
-# Laravel 8 支援 Hotwire 列出的 Turbo 功能
+# Laravel 11 支援 Hotwire 列出的 Turbo 功能
 
-引入 tonysm 的 turbo-laravel 套件來擴增支援 Hotwire 列出的 Turbo 功能，Turbo 提供了一些補充技術，來大幅減少應用程式需要撰寫的 JavaScript，不用大量 JavaScript，而是傳送 HTML 的方式，不只可以實現快速載入首次頁面的目的，還能夠將模板渲染交給伺服器，並在不犧牲傳統單頁應用程式的速度與回應性的情況下，讓開發者使用各種程式語言開發網頁程式，有效提升生產力。
+引入 hotwired-laravel 的 turbo-laravel 套件來擴增支援 Hotwire 列出的 Turbo 功能，Turbo 提供了一些補充技術，來大幅減少應用程式需要撰寫的 JavaScript，不用大量 JavaScript，而是傳送 HTML 的方式，不只可以實現快速載入首次頁面的目的，還能夠將模板渲染交給伺服器，並在不犧牲傳統單頁應用程式的速度與回應性的情況下，讓開發者使用各種程式語言開發網頁程式，有效提升生產力。
 
 ## 使用方式
 - 把整個專案複製一份到你的電腦裡，這裡指的「內容」不是只有檔案，而是指所有整個專案的歷史紀錄、分支、標籤等內容都會複製一份下來。
@@ -22,5 +22,5 @@ $ php artisan key:generate
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/rGD8064.png)
+![](https://i.imgur.com/1aUExXj.png)
 > Turbo Frames 可以將頁面解構成為獨立的內容，透過定義瀏覽的範圍，並進行延遲載入

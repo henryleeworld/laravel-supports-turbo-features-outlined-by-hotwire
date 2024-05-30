@@ -1,25 +1,22 @@
 import { connectStreamSource, disconnectStreamSource } from '@hotwired/turbo'
-import Echo from '../echo'
 
 const subscribeTo = (type, channel) => {
-    if (type === "presence") {
-        return Echo.join(channel)
+    if (type === 'presence') {
+        return window.Echo.join(channel)
     }
 
-    return Echo[type](channel)
+    if (type === 'private') {
+        return window.Echo.private(channel)
+    }
+
+    return window.Echo.channel(channel)
 }
 
 class TurboEchoStreamSourceElement extends HTMLElement {
     async connectedCallback() {
         connectStreamSource(this)
         this.subscription = subscribeTo(this.type, this.channel)
-            .listen('.Tonysm\\TurboLaravel\\Events\\TurboStreamModelCreated', (e) => {
-                this.dispatchMessageEvent(e.message)
-            })
-            .listen('.Tonysm\\TurboLaravel\\Events\\TurboStreamModelUpdated', (e) => {
-                this.dispatchMessageEvent(e.message)
-            })
-            .listen('.Tonysm\\TurboLaravel\\Events\\TurboStreamModelDeleted', (e) => {
+            .listen('.HotwiredLaravel\\TurboLaravel\\Events\\TurboStreamBroadcast', (e) => {
                 this.dispatchMessageEvent(e.message)
             })
     }
@@ -27,23 +24,25 @@ class TurboEchoStreamSourceElement extends HTMLElement {
     disconnectedCallback() {
         disconnectStreamSource(this)
         if (this.subscription) {
-            Echo.leave(this.channel)
+            window.Echo.leave(this.channel)
             this.subscription = null
         }
     }
 
     dispatchMessageEvent(data) {
-        const event = new MessageEvent("message", { data })
+        const event = new MessageEvent('message', { data })
         return this.dispatchEvent(event)
     }
 
     get channel() {
-        return this.getAttribute("channel")
+        return this.getAttribute('channel')
     }
 
     get type() {
-        return this.getAttribute("type") || "private"
+        return this.getAttribute('type') || 'private'
     }
 }
 
-customElements.define("turbo-echo-stream-source", TurboEchoStreamSourceElement)
+if (customElements.get('turbo-echo-stream-source') === undefined) {
+    customElements.define('turbo-echo-stream-source', TurboEchoStreamSourceElement)
+}

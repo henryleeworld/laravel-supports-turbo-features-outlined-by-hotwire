@@ -1,4 +1,4 @@
-# Laravel 11 支援 Hotwire 列出的 Turbo 功能
+# Laravel 12 支援 Hotwire 列出的 Turbo 功能
 
 引入 hotwired-laravel 的 turbo-laravel 套件來擴增支援 Hotwire 列出的 Turbo 功能，Turbo 提供了一些補充技術，來大幅減少應用程式需要撰寫的 JavaScript，不用大量 JavaScript，而是傳送 HTML 的方式，不只可以實現快速載入首次頁面的目的，還能夠將模板渲染交給伺服器，並在不犧牲傳統單頁應用程式的速度與回應性的情況下，讓開發者使用各種程式語言開發網頁程式，有效提升生產力。
 
@@ -16,11 +16,23 @@ $ composer install
 ```sh
 $ php artisan key:generate
 ```
+- 執行 __Artisan__ 指令的 __migrate__ 來執行所有未完成的遷移。
+```sh
+$ php artisan migrate
+```
+- 執行安裝 Vite 和 Laravel 擴充套件引用的依賴項目。
+```sh
+$ npm install
+```
+- 執行正式環境版本化資源管道並編譯。
+```sh
+$ npm run build
+```
 - 在瀏覽器中輸入已定義的路由 URL 來訪問，例如：http://127.0.0.1:8000。
 - 你可以經由 `/` 來進行歡迎畫面瀏覽。
 
 ----
 
 ## 畫面截圖
-![](https://i.imgur.com/1aUExXj.png)
+![](https://i.imgur.com/L9lwGdH.png)
 > Turbo Frames 可以將頁面解構成為獨立的內容，透過定義瀏覽的範圍，並進行延遲載入
